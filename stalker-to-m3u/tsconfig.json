@@ -1,27 +1,11 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "strictPropertyInitialization": false,
-    "experimentalDecorators": true,
-    "moduleResolution": "Node",
-    "importHelpers": true,
     "target": "ES2021",
-    "module": "ES2020",
-    "lib": [
-      "ES2021",
-      "DOM"
-    ]
-  },
-  "include": [
-    "**/*.ts"
-  ]
+    "module": "ESNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "sourceMap": true
+  }
 }
