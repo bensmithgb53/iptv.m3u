@@ -19,9 +19,14 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'  # Ensure Node.js 20
-        cache: 'npm'  # Cache npm dependencies
+        node-version: '20.17.0'  # Specific version
+        cache: 'npm'
         cache-dependency-path: 'stalker-to-m3u/package.json'
+
+    - name: Verify Node.js version
+      run: |
+        node --version
+        npm --version
 
     - name: Install ffmpeg
       run: |
@@ -40,6 +45,7 @@ jobs:
       run: |
         cd stalker-to-m3u
         npm install
+        npm install ts-node --save-dev  # Ensure ts-node is installed
         chmod +x stalker-to-m3u
 
     - name: Run update script
