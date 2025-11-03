@@ -13,10 +13,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Clear cache to ensure Node.js 20
+      run: echo "CACHE_BUSTER=$(date +%s)" >> $GITHUB_ENV
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'  # Ensure Node.js 20
+        cache: 'npm'  # Cache npm dependencies
+        cache-dependency-path: 'stalker-to-m3u/package.json'
 
     - name: Install ffmpeg
       run: |
