@@ -1,9 +1,10 @@
 {
   "name": "stalker-to-m3u",
   "version": "1.5.0",
+  "type": "module",
   "scripts": {
     "compile": "tsc --noEmit --pretty false",
-    "pregroups": "tsc --sourceMap --strict --target ES2021 --module commonjs types.ts common.ts",
+    "pregroups": "tsc --sourceMap --strict --target ES2021 --module esnext types.ts common.ts",
     "groups": "ts-node --project ./tsconfig.ts-node.json generate-groups.ts",
     "prem3u": "npm run pregroups",
     "m3u": "ts-node --project ./tsconfig.ts-node.json generate-m3u.ts",
@@ -35,8 +36,8 @@
     "iswitch": "latest",
     "object-hash": "latest",
     "rxjs": "^7.8.1",
-    "ts-node": "10.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "~5.8.2",
-    "yargs-parser": "latest"
+    "yargs-parser": "^21.1.1"
   }
 }
