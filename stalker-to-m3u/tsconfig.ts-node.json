@@ -3,9 +3,15 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES2021",
-    "typeRoots": [
-      "node_modules/@types",
-      "typings.d.ts"
-    ]
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true
+  },
+  "ts-node": {
+    "esm": false,
+    "experimentalSpecifierResolution": "node"
   }
 }
