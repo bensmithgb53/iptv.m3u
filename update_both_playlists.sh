@@ -1,7 +1,7 @@
 #!/bin/bash
 cd stalker-to-m3u
 if [ ! -f package.json ]; then
-  echo "Error: package.json not found"
+  echo "Error: package.json not found in stalker-to-m3u"
   exit 1
 fi
 npm install
@@ -9,14 +9,14 @@ chmod +x stalker-to-m3u
 
 # TV Playlist
 sed -i 's/"mac": ".*"/"mac": "00:1A:79:09:CB:D7"/' config.json
-./stalker-to-m3u categories
-./stalker-to-m3u m3u --mode iptv
+npm run categories  # Correct command
+npm run m3u -- --mode iptv  # Correct command
 mv iptv-mag.jee-ott.xyz.m3u ../iptv.m3u
 
 # Phone Playlist
 sed -i 's/"mac": ".*"/"mac": "00:1A:79:55:87:40"/' config.json
-./stalker-to-m3u categories
-./stalker-to-m3u m3u --mode iptv
+npm run categories
+npm run m3u -- --mode iptv
 mv iptv-mag.jee-ott.xyz.m3u ../phone-iptv.m3u
 
 cd ..
