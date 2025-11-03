@@ -2,7 +2,7 @@ name: Update IPTV Playlists Daily
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Daily at midnight UTC
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        submodules: recursive
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -23,15 +25,18 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y ffmpeg
 
+    - name: Verify stalker-to-m3u files
+      run: |
+        ls -R stalker-to-m3u
+        if [ ! -f stalker-to-m3u/package.json ]; then
+          echo "Error: package.json not found in stalker-to-m3u"
+          exit 1
+        fi
+
     - name: Install dependencies
       run: |
         cd stalker-to-m3u
-        if [ -f package.json ]; then
-          npm install
-        else
-          echo "Error: package.json not found"
-          exit 1
-        fi
+        npm install
         chmod +x stalker-to-m3u
 
     - name: Run update script
