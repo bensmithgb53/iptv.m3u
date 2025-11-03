@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Detect OS
+OS=$(uname -s)
+echo "Running on $OS"
+
+# Install NodeJS dependencies
+echo "Download NodeJS dependencies"
+npm install
+
+echo "Download ffmpeg (for stream testing)"
+set -e  # Exit on error
+
+FFMPEG_TAR="ffmpeg-release-amd64-static.tar.xz"
+FFMPEG_URL="https://johnvansickle.com/ffmpeg/releases/$FFMPEG_TAR"
+
+echo "Downloading FFmpeg..."
+curl -L -o "$FFMPEG_TAR" "$FFMPEG_URL"
+
+echo "Extracting FFmpeg..."
+if [ "$OS" = "Linux" ]; then
+    tar -xJf "$FFMPEG_TAR" --no-anchored --strip-components=1 -C . --wildcards "*/ffmpeg" "*/ffprobe"
+elif [ "$OS" = "Darwin" ]; then
+    mkdir -p temp_extract
+    tar -xJf "$FFMPEG_TAR" -C temp_extract
+    find temp_extract -type f \( -name "ffmpeg" -o -name "ffprobe" \) -exec mv {} . \;
+    rm -rf temp_extract
+else
+    echo "Unsupported OS: $OS"
+    exit 1
+fi
+
+echo "Cleaning up..."
+rm "$FFMPEG_TAR"
+
+chmod +x ./ffmpeg ./ffprobe
+
+echo "Ffmpeg binaries successfully installed in $(pwd)"
+
+set +e
+
