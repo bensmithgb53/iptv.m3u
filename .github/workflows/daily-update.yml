@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # THIS IS THE KEY: We use the token to allow the subsequent 'git clone' to work.
+          # This ensures the token is available for the script
           token: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: Install Node.js

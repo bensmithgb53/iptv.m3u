@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # 1. Clone the stalker-to-m3u repository using authenticated git clone.
-git clone https://github.com/JuanBindez/stalker-to-m3u.git
+# We explicitly embed the GITHUB_TOKEN into the URL for guaranteed authentication.
+GIT_CLONE_URL="https://${GITHUB_TOKEN}@github.com/JuanBindez/stalker-to-m3u.git"
+git clone $GIT_CLONE_URL
+
 cd stalker-to-m3u
 
 # 2. Install dependencies
