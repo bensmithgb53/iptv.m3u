@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 1. Clone the stalker-to-m3u repository using authenticated git clone.
-# We explicitly embed the GITHUB_TOKEN into the URL for guaranteed authentication.
-GIT_CLONE_URL="https://${GITHUB_TOKEN}@github.com/JuanBindez/stalker-to-m3u.git"
+# We use 'x-oauth-basic' as the username placeholder to ensure the GITHUB_TOKEN is used as the password.
+GIT_CLONE_URL="https://x-oauth-basic:${GITHUB_TOKEN}@github.com/JuanBindez/stalker-to-m3u.git"
 git clone $GIT_CLONE_URL
 
 cd stalker-to-m3u
@@ -30,7 +30,7 @@ echo -e "2\n1" | ./stalker-to-m3u m3u --mode iptv
 
 # 5. Move the generated file back to the main repository folder
 mv iptv-mag.jee-ott.xyz.m3u ../iptv.m3u
-cd ..
+cd ../
 
 # 6. Commit and Push the updated file to GitHub
 git config user.name "github-actions[bot]"
