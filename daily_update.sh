@@ -2,7 +2,9 @@
 
 cd stalker-to-m3u
 
-# 1. Run the playlist generation
+# 1. Run the playlist generation using the local executable
+# We use the full path to ensure the runner finds the binary within the node_modules path.
+./stalker-to-m3u categories
 echo -e "2\n1" | ./stalker-to-m3u m3u --mode iptv
 
 # 2. Move the file up to the main repo directory
@@ -15,3 +17,4 @@ git config user.email "github-actions[bot]@users.noreply.github.com"
 git add iptv.m3u
 git commit -m "Automated playlist refresh $(date +%F)" || echo "No playlist changes to commit."
 git push
+
