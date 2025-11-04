@@ -1,0 +1,32 @@
+name: Daily IPTV Update
+
+on:
+  # Schedule to run once per day (e.g., at 00:00 UTC)
+  schedule:
+    - cron: '0 0 * * *'
+  # Allows manual triggering from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # Fetch depth 0 is needed so we can push back to the repo
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run IPTV Update Script and Push Changes
+        # Run the shell script we created in Step 1
+        env:
+          # The built-in GITHUB_TOKEN has permission to push the change
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash github_update.sh
+
