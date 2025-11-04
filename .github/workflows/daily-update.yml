@@ -13,18 +13,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        # Fetch depth 0 is needed so we can push back to the repo
         with:
           fetch-depth: 0
+          # THIS IS THE KEY: We use the token to allow the subsequent 'git clone' to work.
+          token: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install Utilities (curl and tar)
-        # We install 'tar' because the script uses the tarball download method
-        run: sudo apt-get update && sudo apt-get install -y tar curl
 
       - name: Run IPTV Update Script and Push Changes
         env:
