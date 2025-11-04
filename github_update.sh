@@ -2,7 +2,8 @@
 
 # 1. Download and extract the stalker-to-m3u source code as a tarball.
 # This avoids git credential errors and the broken zip file.
-curl -L "https://github.com/JuanBindez/stalker-to-m3u/archive/refs/heads/master.tar.gz" | tar -xzf -
+curl -L "https://github.com/JuanBindez/stalker-to-m3u/archive/refs/heads/main.tar.gz" | tar -xzf -
+
 
 # 2. Change directory into the successfully created folder
 # The tar command creates a folder named "stalker-to-m3u-master"
