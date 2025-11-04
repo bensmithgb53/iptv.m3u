@@ -22,13 +22,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Utilities (curl and unzip)
-        run: sudo apt-get update && sudo apt-get install -y unzip curl
+      - name: Install Utilities (curl and tar)
+        # We install 'tar' because the script uses the tarball download method
+        run: sudo apt-get update && sudo apt-get install -y tar curl
 
       - name: Run IPTV Update Script and Push Changes
-        # Run the shell script we created in Step 1
         env:
-          # The built-in GITHUB_TOKEN has permission to push the change
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bash github_update.sh

@@ -1,19 +1,17 @@
 #!/bin/bash
 
-# 1. Download and extract the stalker-to-m3u source code without git clone
-# This avoids the "fatal: could not read Username" error.
-curl -L -o stalker-to-m3u.zip https://github.com/JuanBindez/stalker-to-m3u/archive/refs/heads/master.zip
-unzip stalker-to-m3u.zip
-# The unzipped folder is "stalker-to-m3u-master". We rename it.
-mv stalker-to-m3u-master stalker-to-m3u
+# 1. Download and extract the stalker-to-m3u source code as a tarball.
+# This avoids git credential errors and the broken zip file.
+curl -L "https://github.com/JuanBindez/stalker-to-m3u/archive/refs/heads/master.tar.gz" | tar -xzf -
 
-# 2. Now change directory into the successfully created folder
-cd stalker-to-m3u
+# 2. Change directory into the successfully created folder
+# The tar command creates a folder named "stalker-to-m3u-master"
+cd stalker-to-m3u-master
 
 # 3. Install dependencies
 npm install
 
-# 4. Create the config.json file directly on the runner
+# 4. Create the config.json file with your MAC/Portal details
 echo '{
   "hostname": "mag.jee-ott.xyz",
   "port": 80,
@@ -32,6 +30,7 @@ echo '{
 echo -e "2\n1" | ./stalker-to-m3u m3u --mode iptv
 
 # 6. Move the generated file back to the main repository folder
+# We use ../ to go up one level from 'stalker-to-m3u-master'
 mv iptv-mag.jee-ott.xyz.m3u ../iptv.m3u
 cd ..
 
