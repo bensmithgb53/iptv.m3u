@@ -2,15 +2,14 @@
 
 cd stalker-to-m3u
 
-# 1. Run the playlist generation using the local executable
-# We use the full path to ensure the runner finds the binary within the node_modules path.
-./stalker-to-m3u categories
-echo -e "2\n1" | ./stalker-to-m3u m3u --mode iptv
+# 1. Run the playlist generation using the robust 'npm run start-iptv' command
+# This uses the official package scripts, avoiding the previous compilation errors.
+npm run start-iptv
 
-# 2. Move the file up to the main repo directory
+# The output file name is fixed by the package script, so we move it
 mv iptv-mag.jee-ott.xyz.m3u ../iptv.m3u
 
-# 3. Commit and Push the updated file to GitHub
+# 2. Commit and Push the updated file to GitHub
 cd ../
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"

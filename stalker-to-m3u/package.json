@@ -1,22 +1,23 @@
 {
   "name": "stalker-to-m3u",
   "version": "1.5.0",
-  "scripts": {
-    "compile": "tsc --noEmit --pretty false",
-    "pregroups": "tsc --sourceMap --strict --target ES2021 --module commonjs types.ts common.ts",
-    "groups": "ts-node --project ./tsconfig.ts-node.json generate-groups.ts",
-    "prem3u": "npm run pregroups",
-    "m3u": "ts-node --project ./tsconfig.ts-node.json generate-m3u.ts",
-    "m3u-iptv": "npm run groups iptv && npm run m3u iptv",
-    "m3u-vod": "npm run groups vod && npm run m3u vod",
-    "m3u-series": "npm run groups series && npm run m3u series",
-    "preiptv-analyzer": "npm run pregroups",
-    "iptv-analyzer": "ts-node --project ./tsconfig.ts-node.json tools/iptv-analyzer.ts",
-    "prem3u-tester": "npm run pregroups",
-    "m3u-tester": "ts-node --project ./tsconfig.ts-node.json tools/m3u-tester.ts",
-    "preiptv-generator": "npm run pregroups",
-    "iptv-generator": "ts-node --project ./tsconfig.ts-node.json tools/iptv-generator.ts"
-  },
+    "scripts": {
+  "compile": "tsc --noEmit --pretty false",
+  "start-iptv": "npm run m3u-iptv", <--- ADD THIS LINE
+  "pregroups": "tsc --sourceMap --strict --target ES2021 --module commonjs types.ts common.ts",
+  "groups": "ts-node --project ./tsconfig.ts-node.json generate-groups.ts",
+  "prem3u": "npm run pregroups",
+  "m3u": "ts-node --project ./tsconfig.ts-node.json generate-m3u.ts",
+  "m3u-iptv": "npm run groups iptv && npm run m3u iptv",
+  "m3u-vod": "npm run groups vod && npm run m3u vod",
+  "m3u-series": "npm run groups series && npm run m3u series",
+  "preiptv-analyzer": "npm run pregroups",
+  "iptv-analyzer": "ts-node --project ./tsconfig.ts-node.json tools/iptv-analyzer.ts",
+  "prem3u-tester": "npm run pregroups",
+  "m3u-tester": "ts-node --project ./tsconfig.ts-node.json tools/m3u-tester.ts",
+  "preiptv-generator": "npm run pregroups",
+  "iptv-generator": "ts-node --project ./tsconfig.ts-node.json tools/iptv-generator.ts"
+},
   "private": false,
   "devDependencies": {
     "@google/genai": "~1.27.0",
